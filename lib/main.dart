@@ -1,13 +1,19 @@
+import 'package:firebase06092121/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import 'firebase_options.dart';
 
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import, non_constant_identifier_names
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -50,6 +56,8 @@ class _LoginState extends State<Login> {
   //firebase
   final auth = FirebaseAuth.instance;
 
+  late GoogleSignInAccount userObj;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -63,7 +71,7 @@ class _LoginState extends State<Login> {
       try {
         await auth.signInWithEmailAndPassword(email: email, password: password);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text("Signed In"),
             duration: Duration(milliseconds: 1000),
           ),
@@ -119,11 +127,32 @@ class _LoginState extends State<Login> {
                     login();
                   }
                 },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextButton(
+                onPressed: () {
+                  _signInWithGoogle();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                },
+                child: Text('Google Sign In'),
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  _signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

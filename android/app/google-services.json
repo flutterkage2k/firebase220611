@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "32487584001",
+    "project_id": "fir-crud-b501f",
+    "storage_bucket": "fir-crud-b501f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32487584001:android:b9027379ee5358400f2b00",
+        "android_client_info": {
+          "package_name": "com.flutterkage2k.firebase06092121"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32487584001-mo9on2h51l55ueqgs397r13u6kq8koeh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCpMWsdy3K0YQz0XewAM-AEv0_bB7xpfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32487584001-mo9on2h51l55ueqgs397r13u6kq8koeh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "32487584001-3j0f0opba3v74sms80n5v97ijpkab2ef.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterkage2k.firebasetesting06092121"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
